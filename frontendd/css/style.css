@@ -1,0 +1,180 @@
+/* ------------------- Global Styles ------------------- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ------------------- Containers ------------------- */
+.login-container,
+.checkin-container,
+.admin-container,
+.supervisor-container,
+.worker-container {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+/* Login and checkin fixed width */
+.login-container,
+.checkin-container {
+    width: 350px;
+}
+
+/* Admin, Supervisor, Worker containers wider to fit table */
+.admin-container,
+.supervisor-container,
+.worker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center table and buttons */
+    width: 90%;
+    max-width: 1000px;
+    padding: 30px 20px;
+    overflow-x: auto; /* scroll if table too wide */
+}
+
+/* ------------------- Headings ------------------- */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ------------------- Labels and Inputs ------------------- */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* ------------------- Buttons ------------------- */
+button {
+    padding: 10px 30px;
+    margin-top: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Logout button */
+#logoutBtn {
+    margin-top: 20px;
+    background-color: #dc3545;
+}
+
+#logoutBtn:hover {
+    background-color: #b02a37;
+}
+
+/* ------------------- Error and Status Messages ------------------- */
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+#statusMsg {
+    color: green;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* ------------------- Table Styles (Admin, Supervisor, Worker) ------------------- */
+.admin-container table,
+.supervisor-container table,
+.worker-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    min-width: 700px; /* prevents squashing */
+}
+
+.admin-container th,
+.admin-container td,
+.supervisor-container th,
+.supervisor-container td,
+.worker-container th,
+.worker-container td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    min-width: 80px;
+    white-space: nowrap;
+}
+
+/* Table header */
+.admin-container th,
+.supervisor-container th,
+.worker-container th {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Zebra stripes */
+.admin-container tr:nth-child(even),
+.supervisor-container tr:nth-child(even),
+.worker-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+.admin-container tr:hover,
+.supervisor-container tr:hover,
+.worker-container tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Status colors */
+td.status-late {
+    color: red;
+    font-weight: bold;
+}
+
+td.status-ontime {
+    color: green;
+    font-weight: bold;
+}
+
+/* Back / action buttons under table */
+.admin-container button,
+.supervisor-container button,
+.worker-container button {
+    width: auto;
+    margin-top: 20px;
+}
+
+/* Attendance highlighting */
+.late {
+  background-color: rgba(255, 0, 0, 0.15); /* red */
+}
+.early {
+  background-color: rgba(255, 165, 0, 0.2); /* orange */
+}
+.on-time {
+  background-color: rgba(0, 128, 0, 0.15); /* green */
+}

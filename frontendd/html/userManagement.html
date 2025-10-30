@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #0b0c10;
+      color: #c5c6c7;
+      display: flex;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ---------------- Sidebar ---------------- */
+    .sidebar {
+      width: 230px;
+      height: 100vh;
+      background: #1f2833;
+      padding: 25px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.4);
+    }
+
+    .sidebar h2 {
+      color: #66fcf1;
+      margin-bottom: 25px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .sidebar button {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #c5c6c7;
+      font-size: 16px;
+      padding: 12px 10px;
+      text-align: left;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .sidebar button:hover {
+      background: #45a29e;
+      color: #0b0c10;
+    }
+
+    .sidebar .active {
+      background: #66fcf1;
+      color: #0b0c10;
+      font-weight: bold;
+    }
+
+    /* ---------------- Main Content ---------------- */
+    .content {
+      margin-left: 230px; /* pushes content to the right of fixed sidebar */
+      padding: 40px;
+      width: calc(100% - 230px);
+      overflow-y: auto;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 950px;
+      background: #1f2833;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: #66fcf1;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+
+    /* ---------------- Form ---------------- */
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      justify-items: center;
+      margin-bottom: 25px;
+    }
+
+    .form-row input,
+    .form-row select {
+      background: #0b0c10;
+      color: #fff;
+      border: 1px solid #45a29e;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus {
+      border-color: #66fcf1;
+    }
+
+    .form-row button {
+      grid-column: span 2;
+      background-color: #45a29e;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      color: #0b0c10;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+      transition: background-color 0.3s;
+    }
+
+    .form-row button:hover {
+      background-color: #66fcf1;
+    }
+
+    /* ---------------- Table ---------------- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      background-color: #45a29e;
+      color: #0b0c10;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #16222a;
+    }
+
+    tr:hover {
+      background-color: #23333d;
+    }
+
+    .delete-btn {
+      background-color: #c3073f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .delete-btn:hover {
+      background-color: #ff1744;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #66fcf1;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        box-shadow: none;
+      }
+      .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <button onclick="window.location.href='/html/dashboard.html'">🏠 Dashboard</button>
+    <button onclick="window.location.href='/html/payroll.html'">💰 Payroll</button>
+    <button onclick="window.location.href='/html/analytics.html'">📊 Analytics</button>
+    <button class="active">👥 User Management</button>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="container">
+      <h1>👷‍♂️ User Management</h1>
+
+      <div class="form-row">
+        <input type="text" id="worker_id" placeholder="Worker ID">
+        <input type="password" id="password" placeholder="Password">
+        <select id="role">
+          <option value="">Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="worker">Worker</option>
+        </select>
+        <input type="text" id="job" placeholder="Job Title (Optional)">
+        <input type="email" id="email" placeholder="Email (Optional)">
+        <button onclick="addUser()">Add User</button>
+      </div>
+
+      <div id="message"></div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Worker ID</th>
+            <th>Role</th>
+            <th>Job</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <tr><td colspan="5" style="text-align:center;">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/js/userManagement.js"></script>
+</body>
+</html>

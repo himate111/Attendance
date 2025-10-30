@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave Requests</title>
+  <style>
+    /* ---------- GENERAL ---------- */
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: #0b0c10;
+      color: #c5c6c7;
+      margin: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ---------- SIDEBAR ---------- */
+    .sidebar {
+      width: 220px;
+      background-color: #1f2833;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 15px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+    }
+
+    .sidebar h3 {
+      color: #66fcf1;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-btn {
+      background: none;
+      border: none;
+      color: #c5c6c7;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: left;
+      padding: 10px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    .sidebar-btn:hover {
+      background-color: #45a29e;
+      color: #0b0c10;
+    }
+
+    #logoutBtn {
+      background-color: #c3073f;
+      color: #fff;
+    }
+
+    /* ---------- MAIN CONTAINER ---------- */
+    .main-container {
+      flex: 1;
+      padding: 25px;
+      overflow-y: auto;
+      height: 100vh;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    h2 {
+      color: #66fcf1;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* ---------- TABLE ---------- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    thead th {
+      background-color: #1f2833;
+      color: #66fcf1;
+      font-weight: 600;
+      padding: 14px 12px;
+      text-align: center;
+      border-bottom: 2px solid #45a29e;
+    }
+
+    tbody tr {
+      background-color: #1f2833;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+
+    tbody tr:hover {
+      transform: scale(1.01);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    td {
+      padding: 12px 10px;
+      text-align: center;
+      color: #c5c6c7;
+      border-bottom: 1px solid #45a29e33;
+    }
+
+    td span.status {
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: capitalize;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+
+    .Pending { background-color: #fff3cd; color: #856404; }
+    .Approved { background-color: #28a745; color: #fff; }
+    .Rejected { background-color: #dc3545; color: #fff; }
+
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin: 2px;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .approve {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .approve:hover {
+      background-color: #1e7e34;
+      transform: scale(1.05);
+    }
+
+    .reject {
+      background-color: #c3073f;
+      color: #fff;
+    }
+    .reject:hover {
+      background-color: #9a0c2f;
+      transform: scale(1.05);
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tbody tr {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #66fcf1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h3>Dashboard</h3>
+    <button class="sidebar-btn" onclick="window.location.href='/html/payroll.html'">💼 Worker Payroll</button>
+    <button class="sidebar-btn" onclick="window.location.href='/html/analytics.html'">📊 Analytics</button>
+    <button class="sidebar-btn" onclick="window.location.href='/html/requests.html'">📄 Requests</button>
+    <button id="logoutBtn" class="sidebar-btn">🚪 Logout</button>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-container">
+    <h2>Leave Requests</h2>
+    <table id="requestsTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Worker ID</th>
+          <th>Reason</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Status</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="ID">1</td>
+          <td data-label="Worker ID">worker01</td>
+          <td data-label="Reason">Fever</td>
+          <td data-label="From">2025-10-03</td>
+          <td data-label="To">2025-10-05</td>
+          <td data-label="Status"><span class="status Pending">Pending</span></td>
+          <td data-label="Created At">2025-10-01</td>
+          <td data-label="Actions">
+            <button class="approve">Approve</button>
+            <button class="reject">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="/js/requests.js"></script>
+</body>
+</html>

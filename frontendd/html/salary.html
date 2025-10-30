@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salary Summary</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    h2 {
+      margin-bottom: 1rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    input, button {
+      padding: 6px 10px;
+      margin-left: 5px;
+      margin-right: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="salary-container">
+    <h2>Salary Summary</h2>
+    <div style="margin-bottom:1rem;">
+      <label for="salaryMonth">Select Month:</label>
+      <input type="month" id="salaryMonth">
+      <button id="viewSalaryBtn">View</button>
+      <input type="text" id="searchWorker" placeholder="Search Worker ID">
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Worker ID</th>
+          <th>Job</th>
+          <th>Present Days</th>
+          <th>Worked Days</th>
+          <th>Total Hours</th>
+          <th>Overtime Hours</th>
+          <th>Base Salary</th>
+          <th>Overtime Amount</th>
+          <th>Total Salary</th>
+        </tr>
+      </thead>
+      <tbody id="salaryTableBody">
+        <tr><td colspan="9">Select month to view salary</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="/js/salary.js"></script>
+</body>
+</html>

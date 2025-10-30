@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Sidebar Layout */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 200px;
+  background: #222;
+  color: white;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-btn {
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar-btn:hover {
+  background: #007bff;
+}
+
+.logout-btn {
+  background: #dc3545;
+  margin-top: auto;
+}
+
+.admin-container {
+  margin-left: 220px; /* pushes content right of sidebar */
+  width: calc(100% - 220px);
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+  <h3>Dashboard</h3>
+  <button class="sidebar-btn" onclick="window.location.href='/html/userManagement.html'">👥 User Management</button>
+  <button class="sidebar-btn" onclick="window.location.href='/html/payroll.html'">💼 Worker Payroll</button>
+  <button class="sidebar-btn" onclick="window.location.href='/html/analytics.html'">📊 Analytics</button>
+  <button class="sidebar-btn" onclick="window.location.href='/html/requests.html'">📄 Requests</button>
+  <button id="logoutBtn" class="sidebar-btn logout-btn">🚪 Logout</button>
+</div>
+
+
+    <!-- Main Admin Section -->
+    <div class="admin-container">
+      <h2>Attendance Report</h2>
+
+      <!-- Date Filter -->
+      <div class="filter-bar">
+        <label for="reportDate">Select Date:</label>
+        <input type="date" id="reportDate">
+      </div>
+
+      <!-- Report Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Worker ID</th>
+            <th>Job</th>
+            <th>Date</th>
+            <th>Check-In</th>
+            <th>Check-Out</th>
+            <th>Hours Worked</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="reportTableBody">
+          <tr>
+            <td colspan="7">Loading...</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- User Management -->
+       <!-- <div id="userManagement" style="display:none; margin-top:2rem;">
+        <h3>User Management</h3>
+
+     
+        <form id="addUserForm">
+          <input type="text" id="username" placeholder="Enter username" required>
+          <input type="password" id="password" placeholder="Enter password" required>
+          <select id="roleSelect" required>
+            <option value="worker">Worker</option>
+            <option value="supervisor">Supervisor</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="submit">Add User</button>
+        </form> -->
+
+        <!-- User Table -->
+        <!-- <table style="margin-top:1rem;">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody">
+            <tr>
+              <td colspan="4">Loading...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
+
+      <!-- Attendance Analytics -->
+      <!-- <div id="analytics" style="margin-top:3rem; width:100%;">
+        <h3>Attendance Analytics</h3>
+        <canvas id="hoursChart" style="margin-top:1rem;"></canvas>
+        <canvas id="lateChart" style="margin-top:2rem;"></canvas>
+        <canvas id="trendChart" style="margin-top:2rem;"></canvas>
+      </div>
+    </div>
+  </div> -->
+
+  <script src="/js/admin.js"></script>
+</body>
+
+
+</html>

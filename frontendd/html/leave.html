@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leave Request</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <h2>Apply for Leave</h2>
+  <form id="leaveForm">
+    <label>Start Date:</label>
+    <input type="date" id="start_date" required><br><br>
+
+    <label>End Date:</label>
+    <input type="date" id="end_date" required><br><br>
+
+    <label>Reason:</label>
+    <textarea id="reason" required></textarea><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    document.getElementById("leaveForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const worker_id = localStorage.getItem("worker_id"); // stored at login
+      const start_date = document.getElementById("start_date").value;
+      const end_date = document.getElementById("end_date").value;
+      const reason = document.getElementById("reason").value;
+
+      const res = await fetch("http://localhost:3000/leave-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ worker_id, start_date, end_date, reason })
+      });
+
+      const data = await res.json();
+      alert(data.message);
+    });
+  </script>
+</body>
+</html>
+
